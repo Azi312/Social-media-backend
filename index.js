@@ -6,9 +6,6 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import cors from 'cors'
 
-import { PostController, UserController } from './controllers/index.js'
-
-import { verifyToken } from './middleware/auth.js'
 import authRoutes from './routes/auth.js'
 import userRoutes from './routes/users.js'
 import postRoutes from './routes/posts.js'

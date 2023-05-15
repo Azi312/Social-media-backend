@@ -39,6 +39,15 @@ app.use('/auth', authRoutes)
 app.use('/users', userRoutes)
 app.use('/posts', postRoutes)
 
+app.post('/upload-coverPicture', upload.single('cover'), async (req, res) => {
+	try {
+		const result = await cloudinary.uploader.upload(req.file.path)
+		res.json({ url: result.secure_url })
+	} catch (error) {
+		res.status(500).json({ message: 'Failed to upload avatar' })
+	}
+})
+
 app.post('/upload-avatar', upload.single('avatar'), async (req, res) => {
 	try {
 		const result = await cloudinary.uploader.upload(req.file.path)
@@ -58,11 +67,6 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 	}
 })
 
-app.get('/posts', PostController.getAll)
-app.get('/users', UserController.getUsers)
-app.post('/posts', verifyToken, PostController.create)
-
-// app.delete('/posts/:id', checkAuth, PostController.remove)
 // app.patch('/posts/:id', checkAuth, PostController.updateViews)
 
 app.listen(process.env.PORT || 4444, err => {

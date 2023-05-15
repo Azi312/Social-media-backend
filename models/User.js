@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema(
 		age: String,
 		university: String,
 		avatarUrl: String,
+		coverPicture: String,
 	},
 	{ timestamps: true }
 )

@@ -5,6 +5,7 @@ import { UserController } from '../controllers/index.js'
 const router = express.Router()
 
 /* READ */
+router.get('/', UserController.getUsers)
 
 router.get('/:userId', verifyToken, UserController.getUser)
 router.get('/:id/friends', verifyToken, UserController.getUserFriends)

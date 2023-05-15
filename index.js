@@ -67,8 +67,6 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 	}
 })
 
-// app.patch('/posts/:id', checkAuth, PostController.updateViews)
-
 app.listen(process.env.PORT || 4444, err => {
 	if (err) {
 		return console.log('something bad happened', err)

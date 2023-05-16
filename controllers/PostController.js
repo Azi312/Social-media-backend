@@ -135,7 +135,7 @@ export const removeComment = async (req, res) => {
 	try {
 		const { postId, commentId } = req.params
 
-		const post = await Post.findOne({ _id: postId })
+		const post = await Post.findOne({ _id: postId }).populate('user')
 
 		if (!post) {
 			return res.status(404).json({ message: 'Post not found' })
@@ -153,7 +153,7 @@ export const removeComment = async (req, res) => {
 
 		await post.save()
 
-		res.status(200).json({ message: 'Comment deleted successfully' })
+		res.status(200).json(post)
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({ message: 'Something went wrong' })

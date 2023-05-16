@@ -17,6 +17,10 @@ router.patch('/:id/like', verifyToken, PostController.likePost)
 
 /* Delete */
 router.delete('/:id', verifyToken, PostController.removePost)
-router.delete('/:id/comments', verifyToken, PostController.removeComment)
+router.delete(
+	'/:postId/comments/:commentId',
+	verifyToken,
+	PostController.removeComment
+)
 
 export default router
